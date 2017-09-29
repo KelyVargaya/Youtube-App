@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +9,12 @@
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Youtube jQuery</title>
 
-   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-   <script src="node_modules/jquery/dist/jquery.min.js"></script>
-   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-   <script src="node_modules/axios/dist/axios.min.js"></script>
-   <script src="node_modules/youtube-api-search/index.js"></script>
-   
+   <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+   <script src="jquery/dist/jquery.min.js"></script>
+   <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+   <script src="axios/dist/axios.min.js"></script>
+   <script src="youtube-api-search/index.js"></script>
+
    <link rel="stylesheet" href="app.css">
 </head>
 <body>
@@ -43,44 +46,33 @@
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
       </ul>
       <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+       <div class="input-group">
+       <input type="text" class="form-control" id="input-data">
+        <span class="input-group-addon" id="video-search">
+       <span class="glyphicon glyphicon-search " ></span>
+     </span>
+   </div>
       </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>  
 
   </header>
-  
-      <div class="row">
-  <div class="col-lg-12">
-      <ol id = "root">
-   </div>
 
-
-  <div>
-
-
+<section class="reproduccion">
+  <div class="row">
+    <div class="col-lg-7 col-xs-6" id="resultado">
+      <iframe width="100%" height="450" src="https://www.youtube.com/embed/CJXPlEtU2DU" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="col-lg-4 col-xs-12" id="root">
+    </div>
+  </div>
+</section>
+ 
    <script src="app.js"></script>
 </body>
 </html>

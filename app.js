@@ -2,64 +2,79 @@
 
 const API_KEY = "AIzaSyB6RQPxv-X6aojxx9IKh0Nc4twyqlMnitI";
 
-let app = {
-   result: {
+class Youtube {
+   constructor() {
+   this.result = {
       videos: [],
       selectedVideo: null,
-      searchTerm: "iPhone X"
-   },
+      searchTerm: "Subaru-STI"
+      };
+      this.youtubeSearch("Subaru-STI");
 
-   init: function() {
-      //app.videoSearch("iPhone");
-      app.youtubeSearch("iPhone X");
-   },
-   //<iframe className="embed-responsive-item" src={url}> </iframe>
-   getVideoList: function(videos) {
-      return videos.map((video, index) => {
-         const imageUrl = video.snippet.thumbnails.default.url;
-         const url = `https://www.youtube.com/embed/${video.id.videoId}`;
-         return `
-                  <div class="col-md-8">
-                         <li> 
-                              <p> 
-                               <iframe class="embed-responsive-item" src=${url}> </iframe>
-                              </p>
-                        </li>
-                   </div>
-                  <div class="col-md-4">
-                         <img class="media-object" src=${imageUrl} />
-                  </div>
-               `;
+      $('#video-search').click(()=>{
+         let current_video = $('#input-data').val();
+        $("#root").empty();
+         console.log(current_video);
+         this.youtubeSearch(current_video);
       });
-   },
-   youtubeSearch: function(searchTerm) {
-      console.log(searchTerm);
 
+      $('div').click(()=>{
+        let current_video = $('#input-data').val();
+        this.playVideo(current_video);
+      });
+   }
+
+
+   getVideoList(videos) {
+     return videos.map((video, index) => {
+        const imageUrl = video.snippet.thumbnails.default.url;
+        const url = `https://www.youtube.com/embed/${video.id.videoId}`;
+        const description=video.snippet.description;
+        const title=video.snippet.title;
+
+         return $('#root').append(`<div><img class="media-object" src=${imageUrl} />
+         <p>${title}</p></div>`)
+
+
+     });
+   }
+
+   videoList(videos) {
+          const title=videos.snippet.title;
+          const description=videos.snippet.description;
+          const url = `https://www.youtube.com/embed/${videos.id.videoId}`;
+         return $('#resultado').html(`<iframe class="embed-responsive-item" src=${url}> </iframe><p>${title}</p><p>${description}</p>`)
+    }
+    
+   youtubeSearch(searchTerm) {
+      console.log(searchTerm);
       YTSearch({ key: API_KEY, term: searchTerm }, data => {
          console.log("result", data);
-         app.result = {
+         this.result = {
             videos: data,
             selectedVideo: data[0],
             searchTerm: searchTerm
          };
-         var list = app.getVideoList(app.result.videos);
+         console.log('video',this.result.selectedVideo);
+         let list = this.getVideoList(this.result.videos);
          console.log("lis: ", list);
          $("#root").append(list);
       });
-   },
-   videoSearch: function(searchTerm) {
-      jQuery.getJSON("list.json", data => {
-         console.log("result", data.items);
-         app.result = {
-            videos: data.items,
-            selectedVideo: data.items[0],
-            searchTerm: searchTerm
-         };
-         var list = app.getVideoList(app.result.videos);
-         console.log("lis: ", list);
-         $("#root").append(list);
-      });
-   }
-};
 
-$(document).ready(app.init);
+   }
+
+  playVideo(searchTerm){
+    let sour=event.target.src;
+    let position;
+
+    console.log('sour',sour);
+       this.result.videos.map((video,index)=>{
+        const imageUrl = video.snippet.thumbnails.default.url;
+         return (sour==imageUrl)? position=index: '';
+       });
+       this.videoList(this.result.videos[position]);
+ }
+
+}
+
+let video = new Youtube();

@@ -1,10 +1,14 @@
 body {
-  background:url(img/fondo1.jpg); 
+  background: #010101;
   font-family: arial;
   color: #FAFAFA;
   text-transform: uppercase;
+  
 }
 
+span{
+  width: 5px;
+}
 .scoreboard {
   background: #333;
   width: 700px;
@@ -14,12 +18,18 @@ body {
 
 }
 
+#resultado{
+  border: 2px solid grey;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
 .header {
   padding: 5px 10px;
   text-align: center;
   display: flex;
   align-items: center;
-  background-color: white;
+  background-color: #222;
   border-radius: 15px 15px 0 0;
   border-bottom: solid 2px #444;
 }
@@ -199,7 +209,7 @@ body {
   .add-player-form input[type=submit] {
     display: block;
     font-size: .6em;
-    margin: 15px 15px 15px 0; 
+    margin: 15px 15px 15px 0;
     padding: 10px;
     background-color: #333;
     border-radius: 5px;
@@ -216,3 +226,42 @@ body {
     color: #fafafa;
     cursor: pointer;
   }
+
+
+input, .input-group-addon
+ {
+ border:3px solid grey;
+}
+#root{
+  margin-top: 5%;
+
+}
+#root img{
+  width:70%;
+}
+#div_vprincipal{
+    margin-top: 6%;
+    height: 400px;
+    /*margin-right: 5%;*/
+}
+#div_vprincipal iframe{
+  /*position: absolute;
+right: 0;*/
+width: 100%;
+height: 100%;
+}
+.sec_reproducion{
+  margin-top: 2%;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+/*en pantalla inferior menor a 700*/
+@media screen and (max-width:700px){
+  .div_buscar{
+    /*width: 150px;*/
+     position: absolute;
+     top: 3%;
+     left: 5%;
+     right: 5%;
+  }
+}
